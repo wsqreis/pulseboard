@@ -53,5 +53,5 @@ warn_unused_configs = true
 mypy_path = "."
 
 [[tool.mypy.overrides]]
-module = ["jose", "jose.*"]
+module = ["jose"]
 ignore_missing_imports = true

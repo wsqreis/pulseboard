@@ -6,4 +6,5 @@ class Base(DeclarativeBase):
 
 
 from app.modules.auth import models as auth_models  # noqa: E402,F401
+from app.modules.communities import models as community_models  # noqa: E402,F401
 from app.modules.users import models as user_models  # noqa: E402,F401
