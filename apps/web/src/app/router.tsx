@@ -8,6 +8,8 @@ import { ResetPasswordPage } from '../features/auth/routes/ResetPasswordPage'
 import { VerifyEmailPage } from '../features/auth/routes/VerifyEmailPage'
 import { CommunityDetailPage } from '../features/communities/routes/CommunityDetailPage'
 import { CommunitiesIndexPage } from '../features/communities/routes/CommunitiesIndexPage'
+import { BoardPostsPage } from '../features/posts/routes/BoardPostsPage'
+import { PostDetailPage } from '../features/posts/routes/PostDetailPage'
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +19,8 @@ export const router = createBrowserRouter([
       { index: true, element: <Navigate replace to="/communities" /> },
       { path: 'communities', element: <CommunitiesIndexPage /> },
       { path: 'communities/:slug', element: <CommunityDetailPage /> },
+      { path: 'communities/:slug/boards/:boardSlug', element: <BoardPostsPage /> },
+      { path: 'posts/:postId', element: <PostDetailPage /> },
       { path: 'login', element: <LoginPage /> },
       { path: 'register', element: <RegisterPage /> },
       { path: 'verify-email', element: <VerifyEmailPage /> },

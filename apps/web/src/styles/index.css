@@ -268,7 +268,8 @@ button {
 }
 
 .community-card,
-.board-card {
+.board-card,
+.comment-card {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -293,6 +294,10 @@ button {
 .text-area {
   resize: vertical;
   min-height: 120px;
+}
+
+.align-end-text {
+  align-items: flex-end;
 }
 
 @media (max-width: 900px) {
