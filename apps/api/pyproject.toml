@@ -10,9 +10,13 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
   "alembic>=1.14.0,<2.0.0",
+  "argon2-cffi>=25.1.0,<26.0.0",
+  "email-validator>=2.3.0,<3.0.0",
   "fastapi>=0.116.0,<1.0.0",
+  "itsdangerous>=2.2.0,<3.0.0",
   "psycopg[binary]>=3.2.0,<4.0.0",
   "pydantic-settings>=2.10.0,<3.0.0",
+  "python-jose[cryptography]>=3.5.0,<4.0.0",
   "sqlalchemy>=2.0.36,<3.0.0",
   "uvicorn[standard]>=0.35.0,<1.0.0",
 ]
@@ -47,3 +51,7 @@ plugins = []
 strict = true
 warn_unused_configs = true
 mypy_path = "."
+
+[[tool.mypy.overrides]]
+module = ["jose", "jose.*"]
+ignore_missing_imports = true
