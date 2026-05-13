@@ -1,4 +1,17 @@
 services:
+  api:
+    image: python:3.12-slim
+    working_dir: /app/apps/api
+    command: >-
+      bash -lc "pip install -e .[dev] && pytest tests && ruff check . && mypy app tests"
+    environment:
+      PULSEBOARD_DATABASE_URL: postgresql+psycopg://pulseboard:pulseboard@db:5432/pulseboard
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+
   db:
     image: postgres:16-alpine
     environment:
