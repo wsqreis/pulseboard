@@ -130,6 +130,10 @@ button {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
 }
 
+.auth-panel {
+  max-width: 720px;
+}
+
 .hero-panel {
   min-height: 280px;
   display: flex;
@@ -162,12 +166,88 @@ button {
   color: #a6b6cf;
 }
 
+.auth-copy {
+  margin-bottom: 1.5rem;
+}
+
 .checklist {
   display: grid;
   gap: 0.85rem;
   margin: 1rem 0 0;
   padding-left: 1.1rem;
   color: #c6d4e7;
+}
+
+.stack-sm {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.stack-md {
+  display: grid;
+  gap: 1rem;
+}
+
+.auth-form {
+  width: min(100%, 460px);
+}
+
+.auth-form-shell {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.field-stack {
+  display: grid;
+  gap: 0.45rem;
+  color: #c6d4e7;
+}
+
+.text-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: #eef5ff;
+}
+
+.text-input:focus {
+  outline: 2px solid rgba(90, 123, 255, 0.45);
+  outline-offset: 2px;
+}
+
+.auth-submit {
+  width: fit-content;
+}
+
+.inline-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+}
+
+.inline-note,
+.text-link {
+  color: #a6b6cf;
+}
+
+.text-link {
+  text-decoration: none;
+}
+
+.text-link:hover {
+  color: #eef5ff;
+}
+
+.success-text {
+  color: #7fe2ac;
+  margin: 0;
+}
+
+.error-text {
+  color: #ff9aa8;
+  margin: 0;
 }
 
 @media (max-width: 900px) {
