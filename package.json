@@ -1,0 +1,15 @@
+{
+  "name": "pulseboard",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "packages/contracts"
+  ],
+  "scripts": {
+    "dev:web": "npm --workspace @pulseboard/web run dev",
+    "build:web": "npm --workspace @pulseboard/web run build",
+    "lint:web": "npm --workspace @pulseboard/web run lint",
+    "typecheck:web": "npm --workspace @pulseboard/web run typecheck",
+    "generate:contracts": "npm --workspace @pulseboard/contracts run generate"
+  }
+}
