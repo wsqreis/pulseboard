@@ -6,6 +6,7 @@ import { LoginPage } from '../features/auth/routes/LoginPage'
 import { RegisterPage } from '../features/auth/routes/RegisterPage'
 import { ResetPasswordPage } from '../features/auth/routes/ResetPasswordPage'
 import { VerifyEmailPage } from '../features/auth/routes/VerifyEmailPage'
+import { CommunityDetailPage } from '../features/communities/routes/CommunityDetailPage'
 import { CommunitiesIndexPage } from '../features/communities/routes/CommunitiesIndexPage'
 
 export const router = createBrowserRouter([
@@ -15,6 +16,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate replace to="/communities" /> },
       { path: 'communities', element: <CommunitiesIndexPage /> },
+      { path: 'communities/:slug', element: <CommunityDetailPage /> },
       { path: 'login', element: <LoginPage /> },
       { path: 'register', element: <RegisterPage /> },
       { path: 'verify-email', element: <VerifyEmailPage /> },

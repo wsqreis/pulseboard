@@ -250,6 +250,51 @@ button {
   margin: 0;
 }
 
+.top-offset-sm {
+  margin-top: 1rem;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.card-title {
+  margin: 0;
+  color: #eef5ff;
+  font-size: 1.15rem;
+}
+
+.community-card,
+.board-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  text-decoration: none;
+}
+
+.community-card:hover,
+.board-card:hover {
+  border-color: rgba(138, 125, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.form-panel {
+  align-self: start;
+}
+
+.text-area {
+  resize: vertical;
+  min-height: 120px;
+}
+
 @media (max-width: 900px) {
   .app-shell {
     padding: 1.5rem;
