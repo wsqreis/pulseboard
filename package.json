@@ -10,6 +10,7 @@
     "build:web": "npm --workspace @pulseboard/web run build",
     "lint:web": "npm --workspace @pulseboard/web run lint",
     "typecheck:web": "npm --workspace @pulseboard/web run typecheck",
+    "test:e2e:web": "npm --workspace @pulseboard/web run test:e2e",
     "generate:contracts": "npm --workspace @pulseboard/contracts run generate"
   }
 }

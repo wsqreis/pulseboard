@@ -11,6 +11,14 @@
 
 The backend exports the current OpenAPI schema to `packages/contracts/openapi.json`.
 
+## Frontend checks
+
+The frontend supports:
+- build
+- lint
+- typecheck
+- Playwright smoke tests for the public entry shell
+
 ## Seed data
 
 Run the seed script to create a demo owner account, one public community, one board, one post, and one comment.
