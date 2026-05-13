@@ -1,4 +1,4 @@
-import type { components } from '@pulseboard/contracts/src/schema'
+import type { components } from '@pulseboard/contracts'
 
 import { apiClient } from '../../lib/api/client'
 
@@ -12,7 +12,8 @@ export async function register(input: components['schemas']['RegisterRequest']) 
   })
 
   if (error !== undefined || data === undefined) {
-    throw new Error('Unable to register right now.')
+    const detail = (error as { detail?: Array<{ msg?: string }> } | undefined)?.detail?.[0]?.msg
+    throw new Error(detail ?? 'Unable to register right now.')
   }
 
   return data

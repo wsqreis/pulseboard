@@ -13,7 +13,12 @@ export function CreateCommentForm({
   accessToken: string | null
   postId: string
 }) {
-  const { handleSubmit, register, reset } = useForm<CreateCommentFormValues>()
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+    reset,
+  } = useForm<CreateCommentFormValues>()
   const mutation = useCreateCommentMutation(accessToken, postId)
 
   return (
@@ -26,7 +31,8 @@ export function CreateCommentForm({
     >
       <label className="field-stack">
         <span>Add a comment</span>
-        <textarea className="text-input text-area" {...register('body_markdown')} rows={4} />
+        <textarea className="text-input text-area" {...register('body_markdown', { required: 'Comment is required.', minLength: { value: 2, message: 'Comment should have at least 2 characters.' } })} rows={4} />
+        {errors.body_markdown ? <p className="error-text">{errors.body_markdown.message}</p> : null}
       </label>
       <button className="primary-button auth-submit" disabled={mutation.isPending} type="submit">
         {mutation.isPending ? 'Posting…' : 'Post comment'}

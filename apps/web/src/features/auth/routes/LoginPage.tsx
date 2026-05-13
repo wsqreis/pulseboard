@@ -13,7 +13,11 @@ interface LoginFormValues {
 
 export function LoginPage() {
   const { setCurrentUser, setSession } = useAuthSession()
-  const { handleSubmit, register } = useForm<LoginFormValues>()
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = useForm<LoginFormValues>()
   const mutation = useMutation({
     mutationFn: async (values: LoginFormValues) => login(values),
     onSuccess(data) {
@@ -31,11 +35,13 @@ export function LoginPage() {
       <form className="auth-form stack-md" onSubmit={handleSubmit((values) => mutation.mutate(values))}>
         <label className="field-stack">
           <span>Email</span>
-          <input className="text-input" {...register('email')} type="email" />
+          <input className="text-input" {...register('email', { required: 'Email is required.' })} type="email" />
+          {errors.email ? <p className="error-text">{errors.email.message}</p> : null}
         </label>
         <label className="field-stack">
           <span>Password</span>
-          <input className="text-input" {...register('password')} type="password" />
+          <input className="text-input" {...register('password', { required: 'Password is required.', minLength: { value: 8, message: 'Password should have at least 8 characters.' } })} type="password" />
+          {errors.password ? <p className="error-text">{errors.password.message}</p> : null}
         </label>
         <button className="primary-button auth-submit" disabled={mutation.isPending} type="submit">
           {mutation.isPending ? 'Logging in…' : 'Log in'}

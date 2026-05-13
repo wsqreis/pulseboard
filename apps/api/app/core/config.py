@@ -11,6 +11,14 @@ class Settings(BaseSettings):
     database_url: str = Field(
         default="postgresql+psycopg://pulseboard:pulseboard@localhost:5432/pulseboard"
     )
+    cors_origins: list[str] = Field(
+        default=[
+            "http://127.0.0.1:4173",
+            "http://localhost:4173",
+            "http://127.0.0.1:5173",
+            "http://localhost:5173",
+        ]
+    )
     jwt_secret_key: str = "development-secret-key"
     jwt_access_token_ttl_minutes: int = 15
     jwt_refresh_token_ttl_days: int = 14

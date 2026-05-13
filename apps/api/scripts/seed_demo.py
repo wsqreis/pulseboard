@@ -3,6 +3,7 @@ from __future__ import annotations
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app.core.time import utc_now
 from app.db.init_db import init_db
 from app.db.session import current_engine
 from app.modules.auth.security import hash_password
@@ -29,6 +30,7 @@ def seed_demo() -> None:
                 password_hash=hash_password("StrongPass123"),
                 display_name="Pulse Owner",
                 status=UserStatus.active,
+                email_verified_at=utc_now(),
             )
             session.add(owner)
             session.flush()

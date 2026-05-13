@@ -13,7 +13,11 @@ interface ResetPasswordFormValues {
 export function ResetPasswordPage() {
   const [searchParams] = useSearchParams()
   const token = useMemo(() => searchParams.get('token') ?? '', [searchParams])
-  const { handleSubmit, register } = useForm<ResetPasswordFormValues>()
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = useForm<ResetPasswordFormValues>()
   const mutation = useMutation({
     mutationFn: async (values: ResetPasswordFormValues) =>
       resetPassword({ token, password: values.password }),
@@ -28,7 +32,8 @@ export function ResetPasswordPage() {
       <form className="auth-form stack-md" onSubmit={handleSubmit((values) => mutation.mutate(values))}>
         <label className="field-stack">
           <span>New password</span>
-          <input className="text-input" {...register('password')} type="password" />
+          <input className="text-input" {...register('password', { required: 'Password is required.', minLength: { value: 8, message: 'Password should have at least 8 characters.' } })} type="password" />
+          {errors.password ? <p className="error-text">{errors.password.message}</p> : null}
         </label>
         <button
           className="primary-button auth-submit"

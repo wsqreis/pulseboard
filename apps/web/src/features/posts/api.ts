@@ -1,4 +1,4 @@
-import type { components } from '@pulseboard/contracts/src/schema'
+import type { components } from '@pulseboard/contracts'
 
 import { apiClient } from '../../lib/api/client'
 

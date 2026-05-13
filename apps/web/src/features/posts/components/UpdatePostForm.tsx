@@ -18,7 +18,11 @@ export function UpdatePostForm({
   initialBody: string
   initialTitle: string
 }) {
-  const { handleSubmit, register } = useForm<UpdatePostFormValues>({
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = useForm<UpdatePostFormValues>({
     defaultValues: {
       title: initialTitle,
       body_markdown: initialBody,
@@ -30,11 +34,13 @@ export function UpdatePostForm({
     <form className="auth-form stack-md" onSubmit={handleSubmit((values) => mutation.mutate(values))}>
       <label className="field-stack">
         <span>Edit title</span>
-        <input className="text-input" {...register('title')} type="text" />
+        <input className="text-input" {...register('title', { required: 'Title is required.', minLength: { value: 3, message: 'Title should have at least 3 characters.' } })} type="text" />
+        {errors.title ? <p className="error-text">{errors.title.message}</p> : null}
       </label>
       <label className="field-stack">
         <span>Edit body</span>
-        <textarea className="text-input text-area" {...register('body_markdown')} rows={5} />
+        <textarea className="text-input text-area" {...register('body_markdown', { required: 'Body is required.', minLength: { value: 10, message: 'Body should have at least 10 characters.' } })} rows={5} />
+        {errors.body_markdown ? <p className="error-text">{errors.body_markdown.message}</p> : null}
       </label>
       <button className="secondary-button auth-submit" disabled={mutation.isPending} type="submit">
         {mutation.isPending ? 'Saving…' : 'Save updates'}

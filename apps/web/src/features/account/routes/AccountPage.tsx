@@ -29,7 +29,12 @@ async function changePassword(
 
 export function AccountPage() {
   const { accessToken, currentUser } = useAuthSession()
-  const { handleSubmit, register, reset } = useForm<ChangePasswordValues>()
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+    reset,
+  } = useForm<ChangePasswordValues>()
   const mutation = useMutation({
     mutationFn: async (values: ChangePasswordValues) => {
       if (accessToken === null) {
@@ -56,11 +61,13 @@ export function AccountPage() {
         <form className="auth-form stack-md" onSubmit={handleSubmit((values) => mutation.mutate(values))}>
           <label className="field-stack">
             <span>Current password</span>
-            <input className="text-input" {...register('current_password')} type="password" />
+            <input className="text-input" {...register('current_password', { required: 'Current password is required.', minLength: { value: 8, message: 'Current password should have at least 8 characters.' } })} type="password" />
+            {errors.current_password ? <p className="error-text">{errors.current_password.message}</p> : null}
           </label>
           <label className="field-stack">
             <span>New password</span>
-            <input className="text-input" {...register('new_password')} type="password" />
+            <input className="text-input" {...register('new_password', { required: 'New password is required.', minLength: { value: 8, message: 'New password should have at least 8 characters.' } })} type="password" />
+            {errors.new_password ? <p className="error-text">{errors.new_password.message}</p> : null}
           </label>
           <button className="primary-button auth-submit" disabled={mutation.isPending} type="submit">
             {mutation.isPending ? 'Saving…' : 'Update password'}

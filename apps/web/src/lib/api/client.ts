@@ -1,6 +1,6 @@
 import createClient from 'openapi-fetch'
 
-import type { paths } from '@pulseboard/contracts/src/schema'
+import type { paths } from '@pulseboard/contracts'
 
 import { API_BASE_URL } from '../env'
 

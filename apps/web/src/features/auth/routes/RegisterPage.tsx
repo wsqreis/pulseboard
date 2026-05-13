@@ -14,7 +14,11 @@ interface RegisterFormValues {
 
 export function RegisterPage() {
   const { setCurrentUser, setSession } = useAuthSession()
-  const { handleSubmit, register } = useForm<RegisterFormValues>()
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = useForm<RegisterFormValues>()
   const mutation = useMutation({
     mutationFn: async (values: RegisterFormValues) =>
       registerAccount({
@@ -37,15 +41,18 @@ export function RegisterPage() {
       <form className="auth-form stack-md" onSubmit={handleSubmit((values) => mutation.mutate(values))}>
         <label className="field-stack">
           <span>Display name</span>
-          <input className="text-input" {...register('display_name')} type="text" />
+          <input className="text-input" {...register('display_name', { required: 'Display name is required.', minLength: { value: 2, message: 'Display name should have at least 2 characters.' } })} type="text" />
+          {errors.display_name ? <p className="error-text">{errors.display_name.message}</p> : null}
         </label>
         <label className="field-stack">
           <span>Email</span>
-          <input className="text-input" {...register('email')} type="email" />
+          <input className="text-input" {...register('email', { required: 'Email is required.' })} type="email" />
+          {errors.email ? <p className="error-text">{errors.email.message}</p> : null}
         </label>
         <label className="field-stack">
           <span>Password</span>
-          <input className="text-input" {...register('password')} type="password" />
+          <input className="text-input" {...register('password', { required: 'Password is required.', minLength: { value: 8, message: 'Password should have at least 8 characters.' } })} type="password" />
+          {errors.password ? <p className="error-text">{errors.password.message}</p> : null}
         </label>
         <button className="primary-button auth-submit" disabled={mutation.isPending} type="submit">
           {mutation.isPending ? 'Creating account…' : 'Create account'}
@@ -59,7 +66,7 @@ export function RegisterPage() {
           </Link>
         </div>
         {mutation.isSuccess ? <p className="success-text">Account created.</p> : null}
-        {mutation.isError ? <p className="error-text">Unable to create the account right now.</p> : null}
+        {mutation.isError ? <p className="error-text">{mutation.error.message}</p> : null}
       </form>
     </AuthCard>
   )

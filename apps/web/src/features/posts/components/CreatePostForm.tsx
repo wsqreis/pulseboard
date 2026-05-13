@@ -16,7 +16,12 @@ export function CreatePostForm({
   communitySlug: string
   boardSlug: string
 }) {
-  const { handleSubmit, register, reset } = useForm<CreatePostFormValues>()
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+    reset,
+  } = useForm<CreatePostFormValues>()
   const mutation = useCreatePostMutation(accessToken, communitySlug, boardSlug)
 
   return (
@@ -32,11 +37,13 @@ export function CreatePostForm({
       >
         <label className="field-stack">
           <span>Title</span>
-          <input className="text-input" {...register('title')} type="text" />
+          <input className="text-input" {...register('title', { required: 'Title is required.', minLength: { value: 3, message: 'Title should have at least 3 characters.' } })} type="text" />
+          {errors.title ? <p className="error-text">{errors.title.message}</p> : null}
         </label>
         <label className="field-stack">
           <span>Body</span>
-          <textarea className="text-input text-area" {...register('body_markdown')} rows={5} />
+          <textarea className="text-input text-area" {...register('body_markdown', { required: 'Body is required.', minLength: { value: 10, message: 'Body should have at least 10 characters.' } })} rows={5} />
+          {errors.body_markdown ? <p className="error-text">{errors.body_markdown.message}</p> : null}
         </label>
         <button className="primary-button auth-submit" disabled={mutation.isPending} type="submit">
           {mutation.isPending ? 'Publishing…' : 'Publish post'}

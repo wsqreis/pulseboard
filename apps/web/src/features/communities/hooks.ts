@@ -59,8 +59,8 @@ export function useCreateBoardMutation(accessToken: string | null, slug: string)
 
       return createBoard(accessToken, slug, input)
     },
-    onSuccess() {
-      void queryClient.invalidateQueries({ queryKey: ['community', slug, 'boards'] })
+    async onSuccess() {
+      await queryClient.invalidateQueries({ queryKey: ['community', slug, 'boards'] })
     },
   })
 }

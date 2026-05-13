@@ -2,7 +2,7 @@
 
 ## Backend workflow
 
-1. Start the database and mail services with Docker Compose.
+1. Start the database and mail services with `docker compose -f infra/docker/docker-compose.yml ...`.
 2. Run the API checks through the `api` service or start the FastAPI app locally.
 3. Export the OpenAPI schema after backend changes that affect the contract.
 4. Seed demo data when you want a realistic local dataset.
@@ -18,6 +18,7 @@ The frontend supports:
 - lint
 - typecheck
 - Playwright smoke tests for the public entry shell
+- a full browser-driven product flow against a local API server
 
 ## Seed data
 
