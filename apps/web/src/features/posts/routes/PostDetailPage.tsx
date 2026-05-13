@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 
 import { useAuthSession } from '../../auth/useAuthSession'
+import { ModerationActions } from '../../moderation/ModerationActions'
 import { CreateCommentForm } from '../components/CreateCommentForm'
 import { UpdatePostForm } from '../components/UpdatePostForm'
 import { useCommentsQuery, usePostQuery } from '../hooks'
@@ -43,6 +44,8 @@ export function PostDetailPage() {
           postId={post.id}
         />
       </section>
+
+      <ModerationActions accessToken={accessToken} postId={post.id} />
 
       <section className="panel">
         <h2 className="section-title">Comments</h2>

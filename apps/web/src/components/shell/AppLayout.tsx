@@ -35,7 +35,9 @@ export function AppLayout() {
             </>
           ) : (
             <>
-              <span className="inline-note">{currentUser.display_name}</span>
+              <NavLink className="secondary-button nav-link" to="/account">
+                {currentUser.display_name}
+              </NavLink>
               <button className="secondary-button nav-link" onClick={clearSession} type="button">
                 Log out
               </button>

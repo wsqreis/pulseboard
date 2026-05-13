@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 
 import { AppLayout } from '../components/shell/AppLayout'
+import { AccountPage } from '../features/account/routes/AccountPage'
 import { ForgotPasswordPage } from '../features/auth/routes/ForgotPasswordPage'
 import { LoginPage } from '../features/auth/routes/LoginPage'
 import { RegisterPage } from '../features/auth/routes/RegisterPage'
@@ -21,6 +22,7 @@ export const router = createBrowserRouter([
       { path: 'communities/:slug', element: <CommunityDetailPage /> },
       { path: 'communities/:slug/boards/:boardSlug', element: <BoardPostsPage /> },
       { path: 'posts/:postId', element: <PostDetailPage /> },
+      { path: 'account', element: <AccountPage /> },
       { path: 'login', element: <LoginPage /> },
       { path: 'register', element: <RegisterPage /> },
       { path: 'verify-email', element: <VerifyEmailPage /> },
