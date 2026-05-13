@@ -17,3 +17,10 @@ Pulseboard is a community platform for discovering groups, joining conversations
 4. Community domain
 5. Discussions and moderation
 6. API hardening and frontend handoff
+
+## Current backend surface
+
+- authentication flows with session rotation and recovery
+- communities, memberships, and boards
+- posts, comments, moderation basics, and audit events
+- exported OpenAPI contract in `packages/contracts/openapi.json`
